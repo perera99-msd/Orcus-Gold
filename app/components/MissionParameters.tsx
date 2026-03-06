@@ -50,7 +50,7 @@ export default function MissionParameters() {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(80,97,48,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(80,97,48,0.025) 1px, transparent 1px)",
+            "linear-gradient(rgba(147,133,98,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(147,133,98,0.025) 1px, transparent 1px)",
           backgroundSize: "60px 60px"
         }}
       />
@@ -80,10 +80,10 @@ export default function MissionParameters() {
           className="relative bg-black/40 backdrop-blur-sm border-t border-b border-white/10"
         >
           {/* CORNER BRACKETS */}
-          <div className="absolute -top-[2px] -left-[2px] w-6 h-6 border-l-2 border-t-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(80,97,48,0.3)]" />
-          <div className="absolute -top-[2px] -right-[2px] w-6 h-6 border-r-2 border-t-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(80,97,48,0.3)]" />
-          <div className="absolute -bottom-[2px] -left-[2px] w-6 h-6 border-l-2 border-b-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(80,97,48,0.3)]" />
-          <div className="absolute -bottom-[2px] -right-[2px] w-6 h-6 border-r-2 border-b-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(80,97,48,0.3)]" />
+          <div className="absolute -top-[2px] -left-[2px] w-6 h-6 border-l-2 border-t-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(147,133,98,0.3)]" />
+          <div className="absolute -top-[2px] -right-[2px] w-6 h-6 border-r-2 border-t-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(147,133,98,0.3)]" />
+          <div className="absolute -bottom-[2px] -left-[2px] w-6 h-6 border-l-2 border-b-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(147,133,98,0.3)]" />
+          <div className="absolute -bottom-[2px] -right-[2px] w-6 h-6 border-r-2 border-b-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(147,133,98,0.3)]" />
 
           {/* INTERNAL GRID OVERLAY */}
           <div className="absolute inset-0 z-0 pointer-events-none opacity-20 mix-blend-overlay" 
@@ -118,7 +118,7 @@ export default function MissionParameters() {
               {[...Array(3)].map((_, i) => (
                 <div
                   key={`active-${i}`}
-                  className="h-full flex-1 bg-linear-to-r from-camo-600 to-camo-400 shadow-[0_0_8px_rgba(80,97,48,0.6)]"
+                  className="h-full flex-1 bg-linear-to-r from-camo-600 to-camo-400 shadow-[0_0_8px_rgba(147,133,98,0.6)]"
                 />
               ))}
             </div>

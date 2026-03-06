@@ -33,7 +33,7 @@ export default function OpsMap() {
       className="relative py-24 md:py-32 px-4 md:px-6 bg-midnight overflow-hidden"
     >
       <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(80,97,48,0.05)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,133,98,0.05)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
@@ -106,7 +106,7 @@ export default function OpsMap() {
                 
                 {/* Core Dot with separate slow blink */}
                 <motion.div 
-                  className="relative h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-camo-500 shadow-[0_0_10px_rgba(80,97,48,0.8)]"
+                  className="relative h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-camo-500 shadow-[0_0_10px_rgba(147,133,98,0.8)]"
                   animate={{ opacity: [0.4, 1, 0.4] }}
                   transition={{ 
                     duration: 3, 
@@ -123,7 +123,7 @@ export default function OpsMap() {
           <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-black/80 backdrop-blur-xl px-6 py-3 flex items-center justify-between z-30">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-camo-500 shadow-[0_0_5px_rgba(80,97,48,1)]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-camo-500 shadow-[0_0_5px_rgba(147,133,98,1)]" />
                 <span className="font-mono text-[9px] md:text-[10px] text-camo-500 uppercase tracking-widest font-semibold">
                   Live Feed
                 </span>

@@ -47,7 +47,7 @@ export default function Hero() {
           style={{
             background: `
               radial-gradient(ellipse 500px 300px at 20% 30%, rgba(255,255,255,0.015) 0%, transparent 70%),
-              radial-gradient(ellipse 400px 300px at 80% 70%, rgba(80,97,48,0.03) 0%, transparent 70%)
+              radial-gradient(ellipse 400px 300px at 80% 70%, rgba(147,133,98,0.03) 0%, transparent 70%)
             `
           }}
         />
@@ -153,7 +153,7 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap justify-between items-center gap-4 font-mono text-[9px] md:text-[10px] text-gray-500 uppercase tracking-[0.25em]">
             <div className="flex items-center gap-3">
-              <span className="w-2 h-2 bg-camo-500 rounded-full shadow-[0_0_8px_rgba(80,97,48,0.8)] animate-pulse" />
+              <span className="w-2 h-2 bg-camo-500 rounded-full shadow-[0_0_8px_rgba(147,133,98,0.8)] animate-pulse" />
               <span className="text-gray-300">APT-29 Detected</span>
             </div>
             <div className="hidden md:block hover:text-gray-300 transition-colors cursor-default">Sector Y: Secure</div>

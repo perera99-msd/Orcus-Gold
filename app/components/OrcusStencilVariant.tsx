@@ -9,9 +9,9 @@ export default function OrcusStencilVariant() {
         <div
           className="relative text-4xl md:text-5xl font-bold italic uppercase tracking-wide leading-none"
           style={{
-            color: "#506130",
+            color: "#938562",
             fontFamily: '"Saira Semi Condensed", system-ui',
-            textShadow: "2px 2px 0 rgba(80, 97, 48, 0.3)",
+            textShadow: "2px 2px 0 rgba(147, 133, 98, 0.3)",
           }}
         >
           {/* SVG Overlay for stencil effect */}
@@ -28,7 +28,7 @@ export default function OrcusStencilVariant() {
             {/* O (Zero) - Oval with horizontal breaks */}
             <path
               d="M 16 22 Q 10 28 10 36 Q 10 50 20 54 Q 28 58 32 54 Q 38 50 38 36 Q 38 28 32 22 Q 24 18 22 18 Q 18 18 16 22 Z"
-              stroke="#506130"
+              stroke="#938562"
               strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
@@ -42,7 +42,7 @@ export default function OrcusStencilVariant() {
             {/* R - with break */}
             <path
               d="M 50 22 L 50 56 M 50 22 L 62 22 Q 68 22 68 30 Q 68 38 62 38 L 50 38 L 68 56"
-              stroke="#506130"
+              stroke="#938562"
               strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
@@ -54,7 +54,7 @@ export default function OrcusStencilVariant() {
             {/* C - with breaks */}
             <path
               d="M 88 22 Q 76 22 76 36 L 76 50 Q 76 58 88 58 Q 100 58 100 56"
-              stroke="#506130"
+              stroke="#938562"
               strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
@@ -68,7 +68,7 @@ export default function OrcusStencilVariant() {
             {/* U - with breaks */}
             <path
               d="M 122 22 L 122 48 Q 122 58 132 58 Q 142 58 142 48 L 142 22"
-              stroke="#506130"
+              stroke="#938562"
               strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
@@ -82,7 +82,7 @@ export default function OrcusStencilVariant() {
             {/* S - with breaks */}
             <path
               d="M 168 22 Q 156 22 156 30 Q 156 38 168 40 Q 178 42 178 50 Q 178 58 168 58"
-              stroke="#506130"
+              stroke="#938562"
               strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
@@ -104,7 +104,7 @@ export default function OrcusStencilVariant() {
             Stencil Variant
           </div>
           <div className="text-[10px] font-mono text-camo-600 uppercase tracking-wider">
-            Field Drab #506130 • Stencil Breaks
+            Field Drab #938562 • Stencil Breaks
           </div>
         </div>
       </div>

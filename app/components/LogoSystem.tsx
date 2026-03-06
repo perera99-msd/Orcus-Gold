@@ -96,7 +96,7 @@ export default function LogoSystem({
           {/* Brand Guidelines Note */}
           <div className="border border-camo-500/20 bg-camo-500/5 p-4 rounded-none">
             <p className="text-xs text-gray-400 font-mono leading-relaxed">
-              <span className="text-camo-500 font-bold">All variants:</span> Maintain Field Drab (#506130) color. Primary wordmark for header/nav. Icon mark for favicons and app contexts. Stencil variant for tactical/secondary applications.
+              <span className="text-camo-500 font-bold">All variants:</span> Maintain Field Drab (#938562) color. Primary wordmark for header/nav. Icon mark for favicons and app contexts. Stencil variant for tactical/secondary applications.
             </p>
           </div>
         </div>

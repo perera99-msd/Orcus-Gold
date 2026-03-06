@@ -90,9 +90,9 @@ export default function StatCard({
       }}
       className="relative p-8 md:p-10 border border-white/4 bg-white/1.5 backdrop-blur-20 group transition-all duration-300 overflow-hidden"
       style={{
-        "--top-highlight": "linear-gradient(90deg, transparent, rgba(80,97,48,0.12), transparent)"
+        "--top-highlight": "linear-gradient(90deg, transparent, rgba(147,133,98,0.12), transparent)"
       } as React.CSSProperties}
-      onMouseEnter={(e) => e.currentTarget.style.borderColor = "rgba(80,97,48,0.1)"}
+      onMouseEnter={(e) => e.currentTarget.style.borderColor = "rgba(147,133,98,0.1)"}
       onMouseLeave={(e) => e.currentTarget.style.borderColor = "rgba(255,255,255,0.04)"}
     >
       {/* Top Highlight - Per PDF: linear-gradient */}

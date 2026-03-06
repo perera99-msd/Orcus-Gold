@@ -26,25 +26,25 @@
   --color-bodyGray: #9aa0a6;
   
   /* CAMO ACCENT COLORS - US Military Camouflage (Max 5% opacity) */
-  --color-fieldDrab: #506130;
+  --color-fieldDrab: #938562;
   --color-oliveDrab: #4d5b3d;
   --color-jackoBean: #3a4231;
   --color-darkCharcoal: #2d3527;
   --color-driedRosemary: #98a77b;
   --color-pineTree: #21281c;
   
-  /* CAMO UTILITY SCALE - For Tailwind color utilities */
-  --color-camo-300: #a4b589;
-  --color-camo-400: #93a777;
-  --color-camo-500: #506130;
-  --color-camo-600: #47572b;
-  --color-camo-700: #3c4a24;
-  --color-camo-800: #506130;
-  --color-camo-900: #323e1e;
+  /* CAMO UTILITY SCALE - Updated to #938562 family */
+  --color-camo-300: #b5a889;
+  --color-camo-400: #a49675;
+  --color-camo-500: #938562; /* The exact required camo accent */
+  --color-camo-600: #7a6e50;
+  --color-camo-700: #61573f;
+  --color-camo-800: #4a4230;
+  --color-camo-900: #302b1f;
   
   /* SEMANTIC COLORS */
   --color-success: #7c8f6b;
-  --color-warning: #506130;
+  --color-warning: #938562;
   --color-error: #8B6B4A;              /* Brown - NOT red per brief */
   
   /* FONTS */
@@ -95,16 +95,16 @@ body {
   background: var(--color-midnight);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #506130 0%, #3c4a24 100%);
+  background: linear-gradient(180deg, #938562 0%, #3c4a24 100%);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #506130;
+  background: #938562;
 }
 
 /* SELECTION COLORS */
 ::selection {
-  background-color: rgba(80, 97, 48, 0.35);
+  background-color: rgba(147, 133, 98, 0.35);
   color: #ffffff;
 }
 
@@ -144,7 +144,7 @@ body {
 
 /* GLOW EFFECT */
 .glow-camo {
-  box-shadow: 0 0 26px rgba(80, 97, 48, 0.35);
+  box-shadow: 0 0 26px rgba(147, 133, 98, 0.35);
 }
 
 /* ESSENTIAL ANIMATIONS - Per PDF Guidelines */
@@ -245,7 +245,7 @@ body {
 
 /* TEXT GRADIENT */
 .text-gradient-camo {
-  background: linear-gradient(135deg, #627644 0%, #506130 50%, #3c4a24 100%);
+  background: linear-gradient(135deg, #627644 0%, #938562 50%, #3c4a24 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -270,7 +270,7 @@ body {
   position: absolute;
   inset: 0;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(80, 97, 48, 0.3), rgba(80, 97, 48, 0.1));
+  background: linear-gradient(135deg, rgba(147, 133, 98, 0.3), rgba(147, 133, 98, 0.1));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -280,7 +280,7 @@ body {
 /* Primary Button Hover Color */
 @layer utilities {
   .hover\:bg-primary-hover:hover {
-    background-color: #506130;
+    background-color: #938562;
   }
 }
 

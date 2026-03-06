@@ -107,7 +107,7 @@ export default function LogoShowcase() {
           {/* Color Note */}
           <div className="pt-4 border-t border-camo-500/10">
             <p className="text-xs text-gray-500 font-mono">
-              <span className="text-camo-500 font-bold">All variants use:</span> Field Drab (#506130) | Saira Semi Condensed (italic) | Maintain minimum 16px at smallest size
+              <span className="text-camo-500 font-bold">All variants use:</span> Field Drab (#938562) | Saira Semi Condensed (italic) | Maintain minimum 16px at smallest size
             </p>
           </div>
         </motion.div>
