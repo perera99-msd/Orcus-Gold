@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
+  <rect width="1000" height="500" fill="none" />
+  <g fill="none" stroke="rgba(147,133,98,0.6)" stroke-width="1.6">
+    <!-- North America -->
+    <path d="M 90 110 L 150 80 L 210 95 L 250 140 L 230 200 L 170 220 L 120 200 L 95 150 Z" />
+    <!-- South America -->
+    <path d="M 190 230 L 230 245 L 220 330 L 180 365 L 155 320 L 165 270 Z" />
+    <!-- Europe -->
+    <path d="M 380 110 L 440 95 L 500 110 L 520 155 L 455 175 L 400 160 Z" />
+    <!-- Africa -->
+    <path d="M 450 175 L 520 165 L 560 230 L 555 330 L 490 360 L 450 310 L 430 240 Z" />
+    <!-- Asia -->
+    <path d="M 520 110 L 650 100 L 760 130 L 850 190 L 870 260 L 820 300 L 700 300 L 600 260 L 550 210 Z" />
+    <!-- Australia -->
+    <path d="M 800 310 L 860 320 L 870 360 L 830 385 L 790 360 Z" />
+  </g>
+  <g fill="none" stroke="rgba(147,133,98,0.45)" stroke-width="1.2">
+    <!-- Central America -->
+    <path d="M 210 205 L 240 220 L 230 250 L 205 245 Z" />
+    <!-- Greenland -->
+    <path d="M 320 60 L 360 70 L 350 105 L 310 95 Z" />
+    <!-- UK/Ireland -->
+    <path d="M 355 120 L 375 115 L 380 140 L 360 145 Z" />
+    <!-- Middle East -->
+    <path d="M 520 170 L 570 180 L 575 215 L 530 220 Z" />
+    <!-- India -->
+    <path d="M 600 220 L 630 230 L 625 265 L 595 255 Z" />
+    <!-- Southeast Asia -->
+    <path d="M 680 250 L 730 260 L 725 295 L 680 290 Z" />
+    <!-- New Zealand -->
+    <path d="M 885 360 L 905 370 L 895 395 L 875 385 Z" />
+  </g>
+</svg>
