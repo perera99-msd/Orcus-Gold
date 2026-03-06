@@ -28,7 +28,7 @@ const logos = [
 
 export default function Credibility() {
   return (
-    <section className="relative py-12 bg-midnight border-b border-white/5 overflow-hidden">
+    <section id="customers" className="relative py-12 bg-midnight border-b border-white/5 overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

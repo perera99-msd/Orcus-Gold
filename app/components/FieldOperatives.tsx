@@ -35,7 +35,7 @@ export default function FieldOperatives() {
     <motion.section
       ref={ref}
       style={{ y }}
-      id="operatives"
+      id="solutions"
       className="relative py-24 md:py-32 px-4 md:px-6 bg-black overflow-hidden"
     >
        {/* Background Grid */}

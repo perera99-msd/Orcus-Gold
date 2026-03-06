@@ -66,7 +66,7 @@ export default function Capabilities() {
     <motion.section
       ref={ref}
       style={{ y }}
-      id="sectors"
+      id="platform"
       className="relative pb-24 md:pb-32 pt-16 px-4 md:px-6 bg-black overflow-hidden"
     >
       {/* Subtle HUD Grid Background */}
