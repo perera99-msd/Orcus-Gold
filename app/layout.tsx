@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
-import { Saira_Semi_Condensed, JetBrains_Mono } from "next/font/google";
+import { Saira_Semi_Condensed } from "next/font/google";
 import Navbar from "@/app/components/Navbar";
 import "./globals.css";
 
 const saira = Saira_Semi_Condensed({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-saira",
 });
 
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-});
-
 export const metadata: Metadata = {
-  title: "ORCUS | Outcome AI",
+  title: "0RCUS | Offensive Cyber Operations",
   description: "Black hat intelligence. White hat mission.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${saira.variable} ${jetbrains.variable} antialiased relative bg-midnight text-white`}>
+      <body className={`${saira.variable} antialiased relative bg-midnight text-white`}>
         {/* GLOBAL VISUAL LAYERS */}
         <div className="noise-overlay" />
         <div className="fixed inset-0 bg-scanlines opacity-10 pointer-events-none z-40" />

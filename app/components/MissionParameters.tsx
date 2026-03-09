@@ -1,133 +1,126 @@
 "use client";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { useRef, useEffect } from "react";
 
-const TypewriterValue = ({ value, className = "" }: { value: string; className?: string }) => {
-  const nodeRef = useRef<HTMLSpanElement | null>(null);
-  const isInView = useInView(nodeRef, { once: true, margin: "-10%" });
-  const [display, setDisplay] = useState("");
+// Premium slow counting animation physics
+const PremiumCounter = ({ text }: { text: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Extract the numeric part to animate, and keep the symbols (+, /) intact
+  const numMatch = text.match(/(\d+)/);
+  const targetNumber = numMatch ? parseInt(numMatch[1], 10) : 0;
+  const prefix = numMatch ? text.substring(0, numMatch.index) : "";
+  const suffix = numMatch ? text.substring(numMatch.index! + numMatch[1].length) : text;
+
+  const motionValue = useMotionValue(0);
+  
+  // High damping & low stiffness creates that slow, premium deceleration
+  const springValue = useSpring(motionValue, {
+    damping: 60,
+    stiffness: 40,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
-    if (!isInView) return;
+    if (isInView) {
+      motionValue.set(targetNumber);
+    }
+  }, [isInView, motionValue, targetNumber]);
 
-    let index = 0;
-    // SLOWED DOWN: 50ms -> 120ms for premium feel
-    const intervalId = window.setInterval(() => {
-      index += 1;
-      setDisplay(value.slice(0, index));
-
-      if (index >= value.length) {
-        window.clearInterval(intervalId);
+  useEffect(() => {
+    const unsubscribe = springValue.on("change", (latest) => {
+      if (ref.current) {
+        // Format with prefix/suffix (e.g., "200" becomes "200+")
+        ref.current.textContent = `${prefix}${Math.floor(latest)}${suffix}`;
       }
-    }, 120);
+    });
+    return () => unsubscribe();
+  }, [springValue, prefix, suffix]);
 
-    return () => window.clearInterval(intervalId);
-  }, [isInView, value]);
-
-  return (
-    <span ref={nodeRef} className={`tabular-nums ${className}`}>
-      {display}
-    </span>
-  );
+  return <span ref={ref} className="tabular-nums">0{suffix}</span>;
 };
 
 export default function MissionParameters() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "end 0.1"] });
-  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
-
   const stats = [
-    { value: "14", unit: "countries", subLabel: "ACTIVE REGIONS" },
-    { value: "200+", unit: "groups", subLabel: "APT TRACKED" },
-    { value: "24/7", unit: "active", subLabel: "OPS TEMPO" },
-    { value: "77+", unit: "features", subLabel: "PRESS" },
+    { value: "14", unit: "Countries", subLabel: "Active Operations" },
+    { value: "200+", unit: "APT Groups", subLabel: "Tracked Real-Time" },
+    { value: "24/7", unit: "Active", subLabel: "Operations Tempo" },
+    { value: "77+", unit: "Publications", subLabel: "Press Features" },
   ];
 
   return (
-    <section ref={ref} className="relative py-24 md:py-32 px-4 md:px-6 bg-midnight overflow-hidden">
-      {/* Global subtle grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(147,133,98,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(147,133,98,0.025) 1px, transparent 1px)",
-          backgroundSize: "60px 60px"
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section id="ops" className="relative py-20 md:py-28 bg-midnight overflow-hidden border-t border-white/5">
+      <div className="w-full pl-6 pr-5 md:pl-11 md:pr-10 mx-auto relative z-10">
         
-        {/* HEADER SECTION */}
-        <motion.div style={{ y }} className="mb-16">
-          <span className="block text-[9px] font-mono text-camo-500 tracking-[0.25em] uppercase mb-3">
-            04 — PALANTIR-STYLE HUD ELEMENTS
+        {/* Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-10 md:mb-12"
+        >
+          <span className="flex items-center gap-3 font-mono text-[10px] text-camo-500 tracking-[0.25em] uppercase mb-4">
+            <div className="h-px w-6 bg-camo-500/50" />
+            Mission Parameters
           </span>
-          <h2 className="text-4xl md:text-5xl font-sans font-bold text-white tracking-tight mb-4">
-            Stats (HUD)
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-sans font-bold text-white tracking-tighter uppercase leading-none">
+            Operational Tempo
           </h2>
-          <p className="text-gray-400 text-base md:text-lg max-w-3xl font-light leading-relaxed">
-            Corner brackets, grid overlays, typewriter stats. Borrowed from Palantir&apos;s HUD approach.
-          </p>
         </motion.div>
 
-        {/* HUD CONTAINER */}
+        {/* Unified HUD strip with internal tactical grid */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-10%" }}
-          // SLOWED DOWN: Duration 0.8s -> 1.2s
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative bg-black/40 backdrop-blur-sm border-t border-b border-white/10"
+          initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+          whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative border border-camo-500/20 bg-deepBlack/85 shadow-[0_24px_50px_rgba(0,0,0,0.35)] overflow-hidden"
         >
-          {/* CORNER BRACKETS */}
-          <div className="absolute -top-[2px] -left-[2px] w-6 h-6 border-l-2 border-t-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(147,133,98,0.3)]" />
-          <div className="absolute -top-[2px] -right-[2px] w-6 h-6 border-r-2 border-t-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(147,133,98,0.3)]" />
-          <div className="absolute -bottom-[2px] -left-[2px] w-6 h-6 border-l-2 border-b-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(147,133,98,0.3)]" />
-          <div className="absolute -bottom-[2px] -right-[2px] w-6 h-6 border-r-2 border-b-2 border-camo-500 z-20 shadow-[0_0_15px_rgba(147,133,98,0.3)]" />
+          <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)", backgroundSize: "56px 56px" }} />
 
-          {/* INTERNAL GRID OVERLAY */}
-          <div className="absolute inset-0 z-0 pointer-events-none opacity-20 mix-blend-overlay" 
-               style={{ backgroundImage: 'linear-gradient(90deg, transparent 0%, transparent 98%, rgba(255,255,255,0.08) 100%)', backgroundSize: '25% 100%' }} 
-          />
+          {/* Tactical corner brackets */}
+          <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-camo-500/55 z-20" />
+          <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-camo-500/55 z-20" />
+          <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-camo-500/55 z-20" />
+          <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-camo-500/55 z-20" />
 
-          {/* STATS ROW */}
-          <div className="grid grid-cols-2 md:grid-cols-4 relative z-10 text-left">
-            {stats.map((stat, index) => (
-              <div key={index} className="px-8 py-12 flex flex-col justify-end group relative border-r border-white/5 last:border-r-0 min-h-[180px]">
-                <div className="absolute inset-0 bg-camo-500/0 group-hover:bg-camo-500/[0.015] transition-all duration-700 pointer-events-none" />
-                
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-[30px] md:text-[34px] font-mono font-semibold text-white tracking-tight leading-none">
-                    <TypewriterValue value={stat.value} />
-                  </span>
-                  <span className="text-[11px] md:text-[12px] font-mono text-camo-500 font-medium lowercase tracking-tight translate-y-[-2px]">
-                    {stat.unit}
+          <div className="relative z-10 px-8 pt-10 md:px-10 md:pt-11">
+            <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-bodyGray/60 mb-5">Operational Status</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-white/8">
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="relative py-8 pr-6 md:pr-8 border-r border-white/8 last:border-r-0"
+                >
+                  <div className="flex items-end gap-2.5 leading-none mb-2">
+                    <span className="text-5xl md:text-6xl font-semibold text-white tracking-tight">
+                      <PremiumCounter text={stat.value} />
+                    </span>
+                    <span className="text-[11px] md:text-xs font-mono text-camo-500 lowercase tracking-[0.12em] pb-1">
+                      {stat.unit.toLowerCase()}
+                    </span>
+                  </div>
+                  <span className="text-[9px] font-mono text-bodyGray/65 uppercase tracking-[0.24em]">
+                    {stat.subLabel}
                   </span>
                 </div>
-                
-                <span className="text-[10px] font-mono text-gray-500 uppercase tracking-[0.25em] group-hover:text-gray-400 transition-colors">
-                  {stat.subLabel}
-                </span>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {/* BOTTOM STATUS BAR */}
-          <div className="absolute -bottom-[1.5px] left-8 right-8 h-[2px] flex gap-[2px] z-20">
-            <div className="w-[30%] flex gap-[2px]">
-              {[...Array(3)].map((_, i) => (
+            <div className="mt-8 mb-7 flex gap-1.5">
+              {[...Array(10)].map((_, i) => (
                 <div
-                  key={`active-${i}`}
-                  className="h-full flex-1 bg-linear-to-r from-camo-600 to-camo-400 shadow-[0_0_8px_rgba(147,133,98,0.6)]"
+                  key={i}
+                  className={`h-1 flex-1 ${i < 4 ? "bg-camo-500/75" : "bg-white/10"}`}
                 />
               ))}
             </div>
-             <div className="flex-1 flex gap-[2px] opacity-30">
-                 {[...Array(7)].map((_, i) => (
-                 <div key={`inactive-${i}`} className="h-full flex-1 bg-white/20" />
-                 ))}
-            </div>
           </div>
+
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(147,133,98,0.04)_0%,transparent_72%)] pointer-events-none" />
         </motion.div>
       </div>
     </section>

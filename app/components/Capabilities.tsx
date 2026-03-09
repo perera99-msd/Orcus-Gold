@@ -1,159 +1,170 @@
 "use client";
-import { TerminalSquare, Flag, Activity, Globe, Eraser } from "lucide-react";
-import { motion, useScroll, useTransform, easeOut } from "framer-motion";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { useRef } from "react";
 
 export default function Capabilities() {
-  const items = [
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const gridY = useTransform(scrollYProgress, [0, 1], [25, -25]);
+
+  const tools = [
     {
-      number: "01",
-      title: "Penetration Testing",
-      body: "Runs alongside to reveal real attacker paths and confirm fixes.",
-      action: "DEPLOY UNIT >",
-      icon: TerminalSquare,
+      id: "01", category: "SPYWARE PLATFORM", title: "Targeted Device Access",
+      desc: "Zero-click and one-click deployment. Full device or application-level access. Persistent across reboots.",
+      sections: [
+        { label: "COLLECTION", text: "SMS, calls, contacts, GPS, notifications, keystroke capture, clipboard, screen recording, camera, microphone." },
+        { label: "MESSAGING ACCESS", text: "Full extraction from encrypted messaging apps. Real-time and historical content, media, and metadata." },
+        { label: "LIVE SURVEILLANCE", text: "Remote camera activation. Live screen view. Ambient audio. Activity timeline with app-level behavioral profiling." }
+      ],
+      tags: ["WHATSAPP", "SIGNAL", "TELEGRAM", "IMESSAGE", "IOS", "ANDROID", "ZERO-CLICK"], link: "REQUEST ACCESS",
+      span: "lg:col-span-1 lg:row-span-2", theme: "light"
     },
     {
-      number: "02",
-      title: "Red Team Operations",
-      body: "Targets high-value scenarios to pressure-test detection and response.",
-      action: "AUTHORIZE OPS >",
-      icon: Flag,
+      id: "02", category: "ZERO-DAY SUITES", title: "Exploit Development",
+      desc: "Original zero-days. Mobile, desktop, embedded. Full chains from initial access to persistent implant.",
+      tags: ["IOS", "ANDROID", "WINDOWS", "LINUX"], link: "INITIALIZE",
+      span: "lg:col-span-2 lg:row-span-1", theme: "light"
     },
     {
-      number: "03",
-      title: "Risk Baseline",
-      body: "Aligns priorities with business impact so the right closures happen first.",
-      action: "INITIALIZE SCAN >",
-      icon: Activity,
+      id: "03", category: "OUTCOME AI", title: "Continuous Pen Testing",
+      desc: "AI-enhanced autonomous offensive simulation. Modular add-ons. Always-on attack surface monitoring.",
+      tags: ["LIVE DEMO AVAILABLE"], link: "DEPLOY UNIT",
+      span: "lg:col-span-1 lg:row-span-1", theme: "dark"
     },
     {
-      number: "04",
-      title: "OSINT Investigations",
-      body: "Surfaces external exposure and adversary signals.",
-      action: "RUN RECON >",
-      icon: Globe,
+      id: "04", category: "OFFENSIVE SECURITY", title: "Red Team Operations",
+      desc: "Vulnerability assessments. Manual penetration testing. Source code review. Social engineering simulation. Full-scope offensive engagements.",
+      tags: ["EXTERNAL", "INTERNAL", "WEB APP"], link: "AUTHORIZE OPS",
+      span: "lg:col-span-1 lg:row-span-1", theme: "dark"
     },
     {
-      number: "05",
-      title: "Data Removal",
-      body: "Shrinks public attack surface. Outcome AI verifies takedowns across 500+ global data brokers.",
-      action: "EXECUTE PURGE >",
-      icon: Eraser,
+      id: "05", category: "DIGITAL FORENSICS", title: "Investigation & Analysis",
+      desc: "Device forensics. Network intrusion analysis. Data recovery. Incident response. Mobile and desktop examination across all major platforms.",
+      tags: ["INCIDENT RESPONSE", "LITIGATION SUPPORT"], link: "RUN ANALYSIS",
+      span: "lg:col-span-2 lg:row-span-1", theme: "light"
     },
+    {
+      id: "06", category: "COUNTER-SURVEILLANCE", title: "Detection & Hardening",
+      desc: "Spyware detection. Communications hardening. Ongoing monitoring for high-value targets under active surveillance.",
+      tags: ["UHNWI", "GOVERNMENT", "LEGAL"], link: "INITIALIZE SCAN",
+      span: "lg:col-span-1 lg:row-span-1", theme: "light"
+    }
   ];
 
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.5", "end 0.2"] });
-  const y = useTransform(scrollYProgress, [0, 0.5], [40, 0]);
-
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.18 } },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 28, scale: 0.985, filter: "blur(6px)" },
+    visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } },
   };
 
   return (
-    <motion.section
-      ref={ref}
-      style={{ y }}
-      id="platform"
-      className="relative pb-24 md:pb-32 pt-16 px-4 md:px-6 bg-black overflow-hidden"
-    >
-      {/* Subtle HUD Grid Background */}
-      <div className="absolute inset-0 z-0 opacity-20" 
-           style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '40px 40px' }} 
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none z-0" />
-
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section ref={ref} id="tools" className="relative py-20 md:py-32 bg-[#F6F5F2] overflow-hidden">
+      
+      {/* Slight asymmetric inset for a more premium layout frame */}
+      <div className="w-full pl-3 pr-2 md:pl-5 md:pr-4 mx-auto relative z-10">
         
-        {/* =========================================
-            HEADER SECTION (Exact colors from previous)
-            ========================================= */}
+        {/* Header - Added slight padding here so the text doesn't touch the exact edge of the monitor */}
         <motion.div
-          className="mb-12 md:mb-16 border-t border-white/5 pt-12"
+          className="mb-10 md:mb-16 px-4 md:px-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <span className="block font-mono text-[11px] text-camo-500 tracking-[0.2em] uppercase mb-2">/ CAPABILITIES</span>
-              <h2 className="font-mono text-5xl md:text-6xl font-bold text-white uppercase tracking-tight">Capabilities</h2>
+              <span className="flex items-center gap-4 font-mono text-[9px] md:text-[10px] text-bodyGray tracking-[0.25em] uppercase mb-4">
+                <div className="h-px w-6 bg-bodyGray/50" />
+                Tools & Services
+              </span>
+              <h2 className="font-sans text-4xl md:text-5xl lg:text-[64px] font-bold text-midnight tracking-tighter leading-none">
+                What We Deploy
+              </h2>
             </div>
-            <span className="font-sans text-[13px] text-gray-300 mb-1 max-w-xs md:text-right">
-              Add-ons for Outcome AI. <br className="hidden md:block"/>Choose what you need.
-            </span>
+            <p className="font-mono text-[10px] md:text-[11px] text-bodyGray uppercase tracking-widest max-w-60 md:text-right">
+              Full-stack. In-house. No resold exploits.
+            </p>
           </div>
         </motion.div>
 
-        {/* =========================================
-            GLASS CARDS GRID
-            ========================================= */}
+        {/* Tight bento spacing for cleaner card separation */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 border-y border-black/10"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-80px", amount: 0.18 }}
+          style={{ y: gridY }}
         >
-          {items.map((item, index) => {
-            const Icon = item.icon;
+          {tools.map((tool) => {
+            const isDark = tool.theme === "dark";
+            
             return (
               <motion.article
-                key={item.number}
+                key={tool.id}
                 variants={itemVariants}
-                // bg-[#06080a] matches your old color exactly, but we added /80 and blur for the premium glass feel
-                className={`relative rounded-2xl bg-[#06080a]/80 backdrop-blur-xl p-8 md:p-10 border border-white/10 flex flex-col h-full group overflow-hidden transition-all duration-500 hover:shadow-[0_8px_32px_rgba(147,133,98,0.1)] hover:border-camo-500/30 hover:bg-[#06080a] ${
-                  index > 2 ? 'lg:col-span-1 lg:translate-x-1/2' : '' // Centers the bottom 2 cards cleanly
+                whileHover={{ y: -4, transition: { duration: 0.4, ease: "easeOut" } }}
+                className={`group relative flex flex-col justify-between p-8 md:p-12 transition-all duration-500 overflow-hidden ${tool.span} ${
+                  isDark 
+                    ? "bg-charcoal text-white hover:bg-[#111111] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:z-20" 
+                    : "bg-white text-midnight hover:bg-[#FDFDFC] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:z-20"
                 }`}
               >
-                {/* Background Hover Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-camo-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                
-                {/* Animated Top Border Line */}
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-camo-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                {/* Card Content */}
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="mb-8 flex items-start justify-between">
-                    {/* Exact text-white/5 from previous version */}
-                    <span className="font-mono text-5xl text-white/5 font-bold group-hover:text-white/10 transition-colors duration-500">{item.number}</span>
-                    
-                    {/* Glass icon container */}
-                    <div className="bg-white/[0.02] p-3 rounded-xl border border-white/5 group-hover:border-camo-500/20 group-hover:bg-camo-500/10 transition-colors duration-500">
-                      {/* Exact text-white/40 from previous version */}
-                      <Icon className="h-5 w-5 text-white/40 group-hover:text-white/80 transition-colors duration-500" strokeWidth={1.5} />
-                    </div>
-                  </div>
-
-                  {/* Exact font-mono text-white from previous version */}
-                  <h3 className="font-mono text-xl md:text-2xl text-white mb-4 font-bold">{item.title}</h3>
-                  {/* Exact text-gray-300 from previous version */}
-                  <p className="font-sans text-gray-300 text-sm md:text-base leading-relaxed mb-10 flex-grow">{item.body}</p>
-
-                  <span className="font-mono text-[10px] md:text-[11px] text-gray-300 group-hover:text-camo-500 transition-colors uppercase tracking-[0.18em] flex items-center">
-                    {item.action}
-                    {/* Premium Hover Terminal Cursor */}
-                    <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-camo-500 animate-pulse">_</span>
+                {/* Top Row */}
+                <div className="flex justify-between items-start mb-24 md:mb-32">
+                  <span className="font-mono text-[10px] md:text-[11px] font-medium text-bodyGray">
+                    {tool.id}
+                  </span>
+                  <span className={`font-mono text-[8px] md:text-[9px] uppercase tracking-[0.25em] px-2.5 py-1 border ${isDark ? 'border-white/10 text-bodyGray' : 'border-black/10 text-bodyGray'}`}>
+                    {tool.category}
                   </span>
                 </div>
+
+                {/* Bottom Content */}
+                <div className="mt-auto relative z-10">
+                  <h3 className={`text-2xl md:text-3xl lg:text-[34px] font-bold tracking-tight mb-4 ${isDark ? 'text-white' : 'text-midnight'}`}>
+                    {tool.title}
+                  </h3>
+                  <p className={`font-sans text-[13px] md:text-[15px] leading-relaxed mb-8 ${isDark ? 'text-bodyGray' : 'text-gray-600'}`}>
+                    {tool.desc}
+                  </p>
+
+                  {tool.sections && (
+                    <div className="space-y-5 mb-8">
+                      {tool.sections.map(sec => (
+                        <div key={sec.label}>
+                          <h4 className="font-mono text-[9px] text-camo-500 uppercase tracking-widest mb-1.5">{sec.label}</h4>
+                          <p className={`font-sans text-[12px] md:text-[13px] leading-relaxed ${isDark ? 'text-bodyGray' : 'text-gray-600'}`}>{sec.text}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {tool.tags.map(tag => (
+                      <span key={tag} className={`font-mono text-[8px] md:text-[9px] uppercase tracking-widest px-3 py-1.5 border ${isDark ? 'border-borderDark text-bodyGray bg-midnight' : 'border-black/5 text-gray-500 bg-[#F9F8F6]'}`}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a href="#contact" className={`group/link inline-flex items-center gap-2 font-mono text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] border-b pb-1 transition-all duration-300 ${isDark ? 'text-white border-white/20 hover:border-white hover:gap-4' : 'text-midnight border-black/20 hover:border-midnight hover:gap-4'}`}>
+                    {tool.link} <span className="text-sm transition-transform duration-300 group-hover/link:translate-x-1">→</span>
+                  </a>
+                </div>
+
+                {/* Premium Edge Glow on Hover */}
+                <div className={`absolute top-0 left-0 w-full h-0.5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${isDark ? 'bg-camo-500' : 'bg-camo-500'}`} />
               </motion.article>
             );
           })}
         </motion.div>
+
       </div>
-    </motion.section>
+    </section>
   );
 }

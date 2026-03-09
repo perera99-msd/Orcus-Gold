@@ -28,17 +28,18 @@ const logos = [
 
 export default function Credibility() {
   return (
-    <section id="customers" className="relative py-12 bg-midnight border-b border-white/5 overflow-hidden">
+    <section id="credibility" className="relative py-12 md:py-14 bg-midnight border-b border-white/5 overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full max-w-7xl mx-auto flex flex-col items-center relative z-20"
+          initial={{ opacity: 0, y: 26, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full pl-6 pr-5 md:pl-11 md:pr-10 mx-auto flex flex-col items-center relative z-20"
         >
           {/* Subtle Label */}
           <div className="mb-8 text-center">
-            <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-md mb-3 shadow-[0_0_15px_rgba(0,0,0,0.4)]">
-              <h3 className="text-white text-[10px] md:text-[11px] font-mono uppercase tracking-[0.2em]">Credibility</h3>
+            <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white/3 border border-white/8 backdrop-blur-md mb-3 shadow-[0_0_15px_rgba(0,0,0,0.4)]">
+              <h3 className="text-white text-[10px] md:text-[11px] font-mono uppercase tracking-[0.2em]">Credibilities</h3>
             </div>
           </div>
 
@@ -66,14 +67,14 @@ export default function Credibility() {
                   {logos.map((logo, idx) => (
                     <div 
                       key={`${logo.name}-${idx}`} 
-                      className="flex-shrink-0 flex items-center justify-center opacity-40 hover:opacity-100 transition-all duration-500 cursor-default"
+                      className="shrink-0 flex items-center justify-center opacity-40 hover:opacity-100 transition-all duration-500 cursor-default"
                     >
                       <Image
                         src={logo.path}
                         alt={logo.name}
                         width={140}
                         height={40}
-                        className="h-6 md:h-8 w-auto max-w-[120px] md:max-w-[150px] object-contain grayscale hover:grayscale-0 transition-all duration-500 drop-shadow-lg"
+                        className="h-6 md:h-8 w-auto max-w-30 md:max-w-37.5 object-contain grayscale hover:grayscale-0 transition-all duration-500 drop-shadow-lg"
                       />
                     </div>
                   ))}

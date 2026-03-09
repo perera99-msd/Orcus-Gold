@@ -51,7 +51,7 @@ export default function OpsMap() {
           <h2 className="font-sans text-4xl md:text-5xl font-bold text-white uppercase tracking-tight mb-2">
             Ops Map
           </h2>
-          <p className="font-mono text-xs md:text-sm text-gray-400 tracking-wide uppercase">
+           <p className="font-mono text-xs md:text-sm text-bodyGray tracking-wide uppercase">
              Global Threat Theaters // Active Monitoring
           </p>
         </motion.div>
@@ -72,7 +72,7 @@ export default function OpsMap() {
           <div className="absolute inset-0 bg-scanlines opacity-10 pointer-events-none z-10" />
           <div className="absolute inset-0 grid-pattern opacity-10 pointer-events-none z-10 mix-blend-overlay" />
           
-          <div className="relative aspect-[16/9] md:aspect-[2/1] w-full">
+          <div className="relative aspect-video md:aspect-2/1 w-full">
             <Image
               src="/map.svg"
               alt="World map"
@@ -131,7 +131,7 @@ export default function OpsMap() {
             </div>
 
             <div className="flex items-center gap-3">
-               <span className="font-mono text-[10px] text-gray-300 uppercase tracking-widest">
+              <span className="font-mono text-[10px] text-bodyGray uppercase tracking-widest">
                   Real-Time Intelligence
                </span>
             </div>

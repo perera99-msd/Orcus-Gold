@@ -1,298 +1,91 @@
 @import "tailwindcss";
 
-/* ===================================================
-   01 — COLOR SYSTEM (Per Design Brief)
-   ===================================================
-   
-   CRITICAL RULES:
-   ✗ ZERO RED anywhere (#FF0000, #FF*, red-*, etc.)
-   ✗ ZERO BLUE anywhere (#0000FF, #*00FF, blue-*, etc.)
-   ✗ NO NEON or saturated colors
-   
-   EARTH TONES RULE:
-   Camo accents bleed at 3-8% opacity max.
-   Like matte-black tactical vest with faint camo
-   visible only under certain light. If you can see 
-   the colors immediately, OPACITY IS TOO HIGH.
-   
-   =================================================== */
-
 @theme {
-  --color-midnight: #040506;
-  --color-deepBlack: #060708;
-  --color-charcoal: #0c0d0f;
-  --color-borderDark: #1a1d20;
-  --color-white: #FFFFFF;              /* Headlines */
-  --color-bodyGray: #9aa0a6;
+  /* 01 - COLOR SYSTEM (Base Colors) */
+  --color-midnight: #0A0A0A;
+  --color-deepBlack: #0F0F0F;
+  --color-charcoal: #151515;
+  --color-borderDark: #1A1A1A;
+  --color-white: #FFFFFF;
+  --color-bodyGray: #999999;
   
-  /* CAMO ACCENT COLORS - US Military Camouflage (Max 5% opacity) */
-  --color-fieldDrab: #938562;
-  --color-oliveDrab: #4d5b3d;
-  --color-jackoBean: #3a4231;
-  --color-darkCharcoal: #2d3527;
-  --color-driedRosemary: #98a77b;
-  --color-pineTree: #21281c;
-  
-  /* CAMO UTILITY SCALE - Updated to #938562 family */
-  --color-camo-300: #b5a889;
-  --color-camo-400: #a49675;
-  --color-camo-500: #938562; /* The exact required camo accent */
-  --color-camo-600: #7a6e50;
-  --color-camo-700: #61573f;
-  --color-camo-800: #4a4230;
-  --color-camo-900: #302b1f;
-  
-  /* SEMANTIC COLORS */
-  --color-success: #7c8f6b;
-  --color-warning: #938562;
-  --color-error: #8B6B4A;              /* Brown - NOT red per brief */
+  /* 02 - CAMO ACCENT COLORS */
+  --color-camo-500: #938562; /* Field Drab - PRIMARY */
+  --color-camo-600: #544F3D; /* Olive Drab */
+  --color-camo-700: #3E3B2E; /* Jacko Bean */
+  --color-camo-800: #313831; /* Dark Charcoal */
+  --color-driedRosemary: #8E8868; /* Dried Rosemary */
+  --color-camo-900: #252B1F; /* Pine Tree */
   
   /* FONTS */
   --font-sans: var(--font-saira);
-  --font-mono: var(--font-jetbrains);
+  --font-mono: var(--font-saira);
 }
 
-/* SMOOTH SCROLLING */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* BODY SETUP */
 body {
-  background-color: var(--color-midnight);
-  color: #e6e8eb;
+  background-color: #0A0A0A;
+  color: #999999;
   overflow-x: hidden;
-  font-smooth: always;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* NOISE GRAIN OVERLAY - Per PDF: opacity 0.025 */
+.max-w-400 {
+  max-width: 90rem;
+}
+
 .noise-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 50;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
 }
 
-/* SCANLINE EFFECT - Per PDF: opacity ~0.008 */
 .bg-scanlines {
   background-image: repeating-linear-gradient(
     0deg,
     transparent,
     transparent 2px,
-    rgba(255, 255, 255, 0.02) 2px,
-    rgba(255, 255, 255, 0.02) 3px
+    rgba(255, 255, 255, 0.05) 2px,
+    rgba(255, 255, 255, 0.05) 3px
   );
 }
 
-/* PREMIUM SCROLLBAR */
-::-webkit-scrollbar {
-  width: 8px;
-  background: var(--color-midnight);
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #938562 0%, #3c4a24 100%);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #938562;
+.panel-dark {
+  background: rgba(7, 7, 7, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-/* SELECTION COLORS */
+/* THE "SPYWARE MODEL" DOT MATRIX (Dark Theme) */
+.bg-spyware-dark {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* THE "SPYWARE MODEL" DOT MATRIX (Light Theme) */
+.bg-spyware-light {
+  background-image: radial-gradient(circle, rgba(10, 10, 10, 0.12) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* SELECTION */
 ::selection {
   background-color: rgba(147, 133, 98, 0.35);
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
-/* GRID PATTERN - Per PDF: 60px × 60px at 2.5% camo opacity */
-.grid-pattern {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* HUD CORNERS */
-.hud-corners {
-  position: relative;
-}
-.hud-corners::before,
-.hud-corners::after {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-color: var(--color-camo-500);
-  opacity: 0.5;
-}
-.hud-corners::before {
-  top: 0;
-  left: 0;
-  border-left: 2px solid;
-  border-top: 2px solid;
-}
-.hud-corners::after {
-  top: 0;
-  right: 0;
-  border-right: 2px solid;
-  border-top: 2px solid;
-}
-
-/* GLOW EFFECT */
-.glow-camo {
-  box-shadow: 0 0 26px rgba(147, 133, 98, 0.35);
-}
-
-/* ESSENTIAL ANIMATIONS - Per PDF Guidelines */
-
-/* Scroll Reveal: Fade up 30px + opacity, 0.5s, ease-out */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Map Dots Pulse: 2.5s loop, ease-in-out */
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.1);
-  }
-}
-
-/* Camo Drift: 30-60s loop, slow background drift */
-@keyframes camoDrift {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(-2%, 1.5%, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Logo Marquee: seamless horizontal loop */
-@keyframes logoMarquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
+/* BLINKING CURSOR */
 @keyframes caretBlink {
-  0%,
-  45% {
-    opacity: 1;
-  }
-  55%,
-  100% {
-    opacity: 0;
-  }
+  0%, 45% { opacity: 1; }
+  55%, 100% { opacity: 0; }
 }
-
-/* Utility Classes */
-.animate-fade-in-up {
-  animation: fadeInUp 0.5s ease-out;
-}
-
-.animate-pulse {
-  animation: pulse 2.5s ease-in-out infinite;
-}
-
-.camo-drift {
-  animation: camoDrift 45s linear infinite;
-}
-
-.logo-marquee {
-  animation: logoMarquee var(--logo-duration, 80s) linear infinite;
-}
-
 .blinking-caret {
   display: inline-block;
   animation: caretBlink 1s steps(1, end) infinite;
-}
-
-/* BLUR UTILITIES */
-.blur-premium {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-/* GLASS MORPHISM */
-.glass-effect {
-  background: rgba(8, 10, 12, 0.74);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* TEXT GRADIENT */
-.text-gradient-camo {
-  background: linear-gradient(135deg, #627644 0%, #938562 50%, #3c4a24 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* BORDER GRADIENT */
-/* Custom Backdrop Blur - Per PDF: Glass panels require blur(20px) */
-@layer utilities {
-  .backdrop-blur-20 {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-}
-
-/* BORDER GRADIENT */
-.border-gradient {
-  position: relative;
-}
-
-.border-gradient::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(147, 133, 98, 0.3), rgba(147, 133, 98, 0.1));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-/* Primary Button Hover Color */
-@layer utilities {
-  .hover\:bg-primary-hover:hover {
-    background-color: #938562;
-  }
-}
-
-@layer utilities {
-  .panel-dark {
-    background: rgba(7, 9, 11, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-
-  .panel-line {
-    border-color: rgba(255, 255, 255, 0.12);
-  }
 }

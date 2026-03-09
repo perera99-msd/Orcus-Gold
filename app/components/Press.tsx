@@ -44,7 +44,7 @@ export default function Press() {
           viewport={{ once: true }}
           transition={{ duration: 1.0 }}
         >
-          <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-md mb-6">
+          <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-white/3 border border-white/8 backdrop-blur-md mb-6">
               <h3 className="text-camo-500 text-[10px] font-mono uppercase tracking-[0.2em]">Verified Intelligence</h3>
           </div>
           <h2 className="font-mono text-4xl md:text-5xl text-white uppercase tracking-[0.05em] mb-4">Press</h2>
@@ -61,14 +61,14 @@ export default function Press() {
             <motion.article
               key={item.publication}
               variants={itemVariants}
-              className="relative group bg-white/[0.02] border border-white/10 p-8 backdrop-blur-sm hover:bg-white/[0.04] transition-all duration-500"
+              className="relative group bg-white/2 border border-white/10 p-8 backdrop-blur-sm hover:bg-white/4 transition-all duration-500"
             >
               {/* Top Accent Line */}
-              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-camo-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-camo-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               
               <Quote className="w-8 h-8 text-white/10 mb-6 group-hover:text-camo-500/40 transition-colors duration-500" />
               
-              <p className="text-gray-200 text-lg md:text-xl font-light italic leading-relaxed mb-8 min-h-[80px]">
+              <p className="text-white/85 text-lg md:text-xl font-light italic leading-relaxed mb-8 min-h-20">
                 &ldquo;{item.quote}&rdquo;
               </p>
               
@@ -76,7 +76,7 @@ export default function Press() {
                 <span className="font-mono text-xs text-camo-500 font-bold uppercase tracking-widest">
                   {item.publication}
                 </span>
-                <span className="font-mono text-[10px] text-gray-600 uppercase tracking-widest">
+                <span className="font-mono text-[10px] text-bodyGray/70 uppercase tracking-widest">
                   REF: {item.date}
                 </span>
               </div>

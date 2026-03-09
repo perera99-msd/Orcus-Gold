@@ -1,92 +1,103 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function BriefingCTA() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.5", "end 0.2"] });
-  const y = useTransform(scrollYProgress, [0, 0.5], [40, 0]);
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
   return (
-    <motion.section
-      ref={ref}
-      style={{ y }}
-      className="relative py-16 md:py-20 px-4 md:px-6 bg-[#050506] border-y border-white/15"
-    >
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          className="panel-dark p-7 md:p-10 text-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.h2
-            variants={itemVariants}
-            className="font-mono text-5xl md:text-7xl text-white uppercase tracking-[0.05em] mb-4"
-          >
-            Request a Briefing
-          </motion.h2>
+    <section id="contact" className="bg-[#F6F5F2] pl-6 pr-5 md:pl-11 md:pr-10 pt-14 md:pt-20 pb-20 md:pb-28 overflow-hidden">
+      
+      <motion.div
+        initial={{ opacity: 0, x: 72, filter: "blur(8px)" }}
+        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-px bg-black/10 border border-black/10 shadow-[0_14px_34px_rgba(0,0,0,0.1)]"
+      >
+        
+        {/* =========================================
+            LEFT SIDE (White Block + Form)
+            ========================================= */}
+        <div className="bg-white p-11 md:p-15 lg:p-18 min-h-[44vh] md:min-h-[54vh] flex flex-col justify-center relative overflow-hidden">
+          {/* Subtle light dot matrix in background */}
+          <div className="absolute inset-0 bg-spyware-light opacity-10 pointer-events-none" />
+          
+          <div className="relative z-10 w-full max-w-md mx-auto lg:mx-0">
+            <span className="inline-block font-mono text-[10px] uppercase tracking-[0.3em] text-camo-500 mb-12">
+              Secure Channel
+            </span>
+            
+            <form className="space-y-12">
+              {/* Email Input */}
+              <div className="relative group">
+                <label className="block font-mono text-[9px] text-bodyGray uppercase tracking-[0.2em] mb-4 transition-colors group-focus-within:text-midnight">
+                  Official Email Address
+                </label>
+                <input 
+                  type="email" 
+                  placeholder="operator@agency.gov"
+                  className="w-full bg-transparent border-b border-black/10 pb-3 text-midnight font-sans text-lg focus:outline-none focus:border-camo-500 transition-colors placeholder:text-black/20 rounded-none"
+                />
+              </div>
+              
+              {/* Organization Input */}
+              <div className="relative group">
+                <label className="block font-mono text-[9px] text-bodyGray uppercase tracking-[0.2em] mb-4 transition-colors group-focus-within:text-midnight">
+                  Organization / Entity
+                </label>
+                <input 
+                  type="text" 
+                  placeholder="Department of Defense"
+                  className="w-full bg-transparent border-b border-black/10 pb-3 text-midnight font-sans text-lg focus:outline-none focus:border-camo-500 transition-colors placeholder:text-black/20 rounded-none"
+                />
+              </div>
+              
+              {/* Tactical Encryption Note */}
+              <div className="pt-6 flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-camo-500/50" />
+                <span className="font-mono text-[8px] text-bodyGray uppercase tracking-[0.2em]">
+                  256-bit AES Encrypted Transmission
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-gray-300 text-base md:text-lg mb-8 leading-relaxed"
-          >
-            Schedule a confidential consultation with our threat assessment team.
-            Every operation begins with intelligence.
-          </motion.p>
+        {/* =========================================
+            RIGHT SIDE (Black Block + Content)
+            ========================================= */}
+        <div className="bg-charcoal p-11 md:p-15 lg:p-18 min-h-[44vh] md:min-h-[54vh] flex flex-col justify-between group relative overflow-hidden">
+          {/* Dark dot matrix over the black block */}
+          <div className="absolute inset-0 bg-spyware-dark opacity-30 mix-blend-overlay pointer-events-none" />
+          
+          <div className="relative z-10">
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-bodyGray/60 mb-8">
+              Clearance Required
+            </p>
+            
+            <h2 className="text-white text-5xl md:text-7xl lg:text-[80px] xl:text-[96px] font-bold tracking-tighter leading-[0.85] uppercase mb-10">
+              Request a<br />
+              Briefing.
+            </h2>
+            
+            <p className="text-bodyGray text-sm md:text-[15px] max-w-sm leading-relaxed border-l-[3px] border-white/10 pl-5 mb-12">
+              <strong className="text-white font-medium">Vetted inquiries only.</strong> Confidential consultation. Secure transmission. No public record.
+            </p>
+          </div>
 
-          <motion.div
-            className="w-full max-w-md mx-auto space-y-3 mb-6"
-            variants={itemVariants}
-          >
-            <input
-              type="text"
-              placeholder="Organization"
-              className="w-full bg-black/45 border border-white/15 px-4 py-3 text-white placeholder-gray-400 font-mono text-sm focus:outline-none focus:border-camo-500/60 transition-colors"
-            />
-            <input
-              type="email"
-              placeholder="Contact Email"
-              className="w-full bg-black/45 border border-white/15 px-4 py-3 text-white placeholder-gray-400 font-mono text-sm focus:outline-none focus:border-camo-500/60 transition-colors"
-            />
-          </motion.div>
-
-          <motion.button
-            variants={itemVariants}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="px-10 py-3 bg-camo-500 text-black font-mono text-[10px] uppercase tracking-[0.22em] font-semibold rounded-none hover:bg-camo-600 transition-colors"
-          >
-            Request Briefing
-          </motion.button>
-
-          <motion.p
-            variants={itemVariants}
-            className="mt-6 font-mono text-[11px] text-gray-400 uppercase tracking-[0.14em]"
-          >
-            Confidential • Threat Assessment • Secure Transmission
-          </motion.p>
-        </motion.div>
-      </div>
-    </motion.section>
+          <div className="relative z-10 mt-auto">
+            <a 
+              href="mailto:contact@0rcus.com" 
+              className="group/btn inline-flex items-center justify-between w-full sm:w-auto bg-camo-500 text-midnight px-12 py-5 font-mono text-xs md:text-[13px] font-bold uppercase tracking-[0.25em] transition-all duration-700 ease-[0.16,1,0.3,1] hover:bg-white overflow-hidden shadow-[0_0_30px_rgba(147,133,98,0.1)] hover:shadow-[0_0_50px_rgba(255,255,255,0.25)]"
+            >
+              <div className="absolute inset-0 bg-black/5 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1]" />
+              <span className="relative z-10 flex items-center gap-6">
+                Initiate Contact <span className="text-lg transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover/btn:translate-x-3">→</span>
+              </span>
+            </a>
+          </div>
+          
+        </div>
+        
+      </motion.div>
+    </section>
   );
 }
