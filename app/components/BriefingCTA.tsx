@@ -69,17 +69,17 @@ export default function BriefingCTA() {
           <div className="absolute inset-0 bg-spyware-dark opacity-30 mix-blend-overlay pointer-events-none" />
           
           <div className="relative z-10">
-            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-bodyGray/60 mb-8">
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-bodyGray/60 mb-8 transition-colors duration-700 ease-[0.16,1,0.3,1] group-hover:text-camo-500">
               Clearance Required
             </p>
             
-            <h2 className="text-white text-5xl md:text-7xl lg:text-[80px] xl:text-[96px] font-bold tracking-tighter leading-[0.85] uppercase mb-10">
+            <h2 className="text-white text-5xl md:text-7xl lg:text-[80px] xl:text-[96px] font-bold tracking-tighter leading-[0.85] uppercase mb-10 transition-colors duration-1000 ease-[0.16,1,0.3,1] group-hover:text-camo-500">
               Request a<br />
               Briefing.
             </h2>
             
-            <p className="text-bodyGray text-sm md:text-[15px] max-w-sm leading-relaxed border-l-[3px] border-white/10 pl-5 mb-12">
-              <strong className="text-white font-medium">Vetted inquiries only.</strong> Confidential consultation. Secure transmission. No public record.
+            <p className="text-bodyGray text-sm md:text-[15px] max-w-sm leading-relaxed border-l-[3px] border-white/10 pl-5 mb-12 transition-colors duration-700 ease-[0.16,1,0.3,1] group-hover:text-white">
+              <strong className="text-white font-medium transition-colors duration-700 ease-[0.16,1,0.3,1] group-hover:text-camo-500">Vetted inquiries only.</strong> Confidential consultation. Secure transmission. No public record.
             </p>
           </div>
 
